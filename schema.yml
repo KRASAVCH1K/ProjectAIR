@@ -1,0 +1,53 @@
+openapi: 3.0.3
+info:
+  title: wether_forecast API
+  version: 1.0.0
+  description: API that sums two integer operands
+paths:
+  /api/{days}/{color}:
+    get:
+      operationId: api_retrieve
+      parameters:
+      - in: path
+        name: color
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: days
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageFromPillow'
+          description: ''
+components:
+  schemas:
+    ImageFromPillow:
+      type: object
+      properties:
+        image_base64:
+          type: string
+        encoding:
+          type: string
+      required:
+      - encoding
+      - image_base64
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid
