@@ -14,6 +14,7 @@ def weather(days, color):
     number_days = [i+1 for i in range(days)]
 
     sns.lineplot(x=number_days, y=name_of_row, color=color)
+    plt.legend(labels=["максимальная температура"], title="прогноз погоды", )
     ts = str(time.time()).replace('.', '_')
     image_path = f"images/weather_data_{ts}.png"
     plt.savefig(f'{image_path}')
